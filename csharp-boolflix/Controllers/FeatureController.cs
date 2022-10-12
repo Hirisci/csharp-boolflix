@@ -31,8 +31,8 @@ namespace csharp_boolflix.Controllers
             {
                 return View(feature);
             }
-            var isDouble = _db.Features.ToList().FirstOrDefault(x => x.Name == feature.Name);
-            if (isDouble == null)
+            var isDouble = _db.Features.FirstOrDefault(x => x.Name == feature.Name);
+            if (isDouble != null)
             {
                 _toastNotification.Warning("Attenzione "+ feature.Name +" giá prensente in Database");
                 return View(feature);

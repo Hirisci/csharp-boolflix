@@ -27,7 +27,26 @@
                         <td class="d-flex gap-2">
                             <a class="btn btn-sm bg-warning"><i class="fa-sharp fa-solid fa-pen-to-square"></i> edit</a>
                             <form asp-controller="Feature" asp-action="Delete" asp-route-id="@item.Id" method="post">
-                                <button class="btn btn-danger btn-sm" type="submit" ><i class="fa-sharp fa-solid fa-trash"></i> Cancel</button>
+                                <button data-bs-toggle="modal" type="button" data-bs-target="#modal-@item.Id" class="btn btn-danger btn-sm"><i class="fa-sharp fa-solid fa-trash"></i> Cancel</button>
+                                <!-- Modal Conferma -->
+                                    <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Attenzione!</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                Sei sicuro di voler cancellare @item.Name?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                                    <button type="submit"  class="btn btn-primary">Accetta</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- Fine Modal Conferma -->
                             </form>
                         </td>
                     </tr>
@@ -37,18 +56,6 @@
     }else{
         <h1>Le features sono vuote</h1>
     }
-
-   @* <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="me-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
-            <button type="button" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true"></span>
-            </button>
-        </div>
-        <div class="toast-body">
-            Hello, world! This is a toast message.
-        </div>
-    </div>*@
+     
 
 </div>
