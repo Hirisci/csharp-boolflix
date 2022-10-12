@@ -4,7 +4,7 @@
 @model List<Feature>
 
 <div class="">
-    <div class="text-end">
+    <div class="text-end mb-3">
         <a class="btn btn-sm btn-outline-primary" asp-controller="Feature" asp-action="Create"><i class="fa-sharp fa-solid fa-circle-plus"></i> add Feature</a>
     </div>
 
@@ -12,26 +12,24 @@
     {
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Azioni</th>
+                <tr class="table-dark">
+                    <th scope="col" class="w-25">#</th>
+                    <th scope="col" class="w-50">Name</th>
+                    <th scope="col"  class="w-25">Azioni</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <th scope="row">Id</th>
-                        <td>@item.Id</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Name</th>
+                    <tr >
+                        <th scope="row">@item.Id</th>
                         <td>@item.Name</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Azioni</th>
-                        <td>bottoni da riempire</td>
+                        <td class="d-flex gap-2">
+                            <a class="btn btn-sm bg-warning"><i class="fa-sharp fa-solid fa-pen-to-square"></i> edit</a>
+                            <form asp-controller="Feature" asp-action="Delete" asp-route-id="@item.Id" method="post">
+                                <button class="btn btn-danger btn-sm" type="submit" ><i class="fa-sharp fa-solid fa-trash"></i> Cancel</button>
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -39,4 +37,18 @@
     }else{
         <h1>Le features sono vuote</h1>
     }
+
+   @* <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+    </div>*@
+
 </div>
