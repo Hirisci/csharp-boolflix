@@ -1,10 +1,63 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Genres Page";
 }
+@model List<Genre>
 
-<div>
-    <div>
-        <h5>Nulla da vedere</h5>
+<div class="">
+    <div class="text-end mb-3">
+        <a class="btn btn-sm btn-outline-primary" asp-controller="Genre" asp-action="Create"><i class="fa-sharp fa-solid fa-circle-plus"></i> add Genre</a>
     </div>
+
+    @if (Model.Count > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col" class="w-25">#</th>
+                    <th scope="col" class="w-50">Name</th>
+                    <th scope="col" class="w-25">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Name</td>
+                        <td class="d-flex gap-2">
+                            <a class="btn btn-sm bg-warning"><i class="fa-sharp fa-solid fa-pen-to-square"></i> edit</a>
+                            <form asp-controller="Genre" asp-action="Delete" asp-route-id="@item.Id" method="post">
+                                <button data-bs-toggle="modal" type="button" data-bs-target="#modal-@item.Id" class="btn btn-danger btn-sm"><i class="fa-sharp fa-solid fa-trash"></i> Cancel</button>
+                                <!-- Modal Conferma -->
+                                <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Attenzione!</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Sei sicuro di voler cancellare @item.Name?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                                <button type="submit" class="btn btn-primary">Accetta</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Fine Modal Conferma -->
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h1>Non sono presenti Generi di film e serie TV</h1>
+    }
+
 
 </div>
