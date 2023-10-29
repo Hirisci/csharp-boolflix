@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Features Page";
+}
+@model List<Feature>
+
+<div class="text-center">
+    @if (Model.Count > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">Id</th>
+                        <td>@item.Id</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>@item.Name</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Azioni</th>
+                        <td>bottoni da riempire</td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+    }else{
+        <h1>Le features sono vuote</h1>
+    }
+</div>
